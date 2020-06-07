@@ -68,17 +68,24 @@ public class VAMonthHeaderView: UIView {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        let buttonWidth: CGFloat = 50.0
+        let buttonWidth: CGFloat = 30
         monthLabel.frame = CGRect(x: 0, y: 0, width: appearance.monthTextWidth, height: frame.height)
         monthLabel.center.x = center.x
-        previousButton.frame = CGRect(x: monthLabel.frame.minX - buttonWidth, y: 0, width: buttonWidth, height: frame.height)
-        nextButton.frame = CGRect(x: monthLabel.frame.maxX, y: 0, width: buttonWidth, height: frame.height)
+//        previousButton.frame = CGRect(x: monthLabel.frame.minX - buttonWidth, y: 0, width: buttonWidth, height: frame.height)
+//        nextButton.frame = CGRect(x: monthLabel.frame.maxX, y: 0, width: buttonWidth, height: frame.height)
+        
+        previousButton.frame = CGRect(x: frame.origin.x + 15, y: 5, width: 30, height: 30)
+        nextButton.frame = CGRect(x: frame.origin.x + frame.size.width - 15 - 30 , y: 5, width: 30, height: 30)
+        
+        self.layer.cornerRadius = 8;
+        self.clipsToBounds = true
+        
     }
     
     private func setupView() {
         subviews.forEach{ $0.removeFromSuperview() }
         
-        backgroundColor = .white
+      //  backgroundColor = .white
         monthLabel.font = appearance.monthFont
         monthLabel.textAlignment = .center
         monthLabel.textColor = appearance.monthTextColor
@@ -90,8 +97,8 @@ public class VAMonthHeaderView: UIView {
         nextButton.addTarget(self, action: #selector(didTapNext(_:)), for: .touchUpInside)
         
         addSubview(monthLabel)
-        addSubview(previousButton)
-        addSubview(nextButton)
+//        addSubview(previousButton)
+//        addSubview(nextButton)
         
         layoutSubviews()
     }
@@ -115,3 +122,4 @@ extension VAMonthHeaderView: VACalendarMonthDelegate {
     }
     
 }
+
