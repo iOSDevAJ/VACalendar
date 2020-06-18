@@ -25,8 +25,8 @@ public struct VAMonthHeaderViewAppearance {
     }()
     
     public init(
-        monthFont: UIFont = UIFont.systemFont(ofSize: 21),
-        monthTextColor: UIColor = UIColor.black,
+        monthFont: UIFont = UIFont.systemFont(ofSize: 16),
+        monthTextColor: UIColor = UIColor.white,
         monthTextWidth: CGFloat = 150,
         previousButtonImage: UIImage = UIImage(),
         nextButtonImage: UIImage = UIImage(),
@@ -74,12 +74,12 @@ public class VAMonthHeaderView: UIView {
         
         let buttonWidth: CGFloat = 30
         monthLabel.frame = CGRect(x: 0, y: 0, width: appearance.monthTextWidth, height: frame.height)
-        monthLabel.center.x = center.x
+        monthLabel.center.x = center.x - 25
 //        previousButton.frame = CGRect(x: monthLabel.frame.minX - buttonWidth, y: 0, width: buttonWidth, height: frame.height)
 //        nextButton.frame = CGRect(x: monthLabel.frame.maxX, y: 0, width: buttonWidth, height: frame.height)
         
-        previousButton.frame = CGRect(x: frame.origin.x + 15, y: 5, width: 30, height: 30)
-        nextButton.frame = CGRect(x: frame.origin.x + frame.size.width - 15 - 30 , y: 5, width: 30, height: 30)
+        previousButton.frame = CGRect(x:  15, y: 5, width: 30, height: 30)
+        nextButton.frame = CGRect(x: frame.size.width - 15 - 30 , y: 5, width: 30, height: 30)
         
         self.layer.cornerRadius = 8;
         self.clipsToBounds = true
@@ -99,10 +99,10 @@ public class VAMonthHeaderView: UIView {
         
         nextButton.setImage(appearance.nextButtonImage, for: .normal)
         nextButton.addTarget(self, action: #selector(didTapNext(_:)), for: .touchUpInside)
-        
+        print("month label",monthLabel)
         addSubview(monthLabel)
-//        addSubview(previousButton)
-//        addSubview(nextButton)
+        addSubview(previousButton)
+        addSubview(nextButton)
         
         layoutSubviews()
     }
